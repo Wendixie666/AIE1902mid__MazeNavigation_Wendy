@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+<world name="maze_world">
+
+  <include>
+    <uri>model://sun</uri>
+  </include>
+
+  <include>
+    <uri>model://ground_plane</uri>
+  </include>
+
+  <!-- 外围墙 -->
+
+  <model name="wall_north">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>20 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>20 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>0 10 0.5 0 0 0</pose>
+  </model>
+
+  <model name="wall_south">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>20 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>20 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>0 -10 0.5 0 0 0</pose>
+  </model>
+
+  <model name="wall_east">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 20 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 20 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>10 0 0.5 0 0 0</pose>
+  </model>
+
+  <model name="wall_west">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 20 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 20 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-10 0 0.5 0 0 0</pose>
+  </model>
+
+
+  <!-- 内部迷宫墙 -->
+
+  <model name="maze_wall1">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-4 -5 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall2">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>2 -1 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall3">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>4 3 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall4">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-3 5 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall5">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>6 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>6 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-6 1 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall6">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 6 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 6 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>6 -4 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall7">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>5 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>5 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>1 7 0.5 0 0 0</pose>
+  </model>
+
+
+</world>
+</sdf>

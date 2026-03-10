@@ -1,0 +1,454 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+<world name="maze_world">
+
+  <include>
+    <uri>model://sun</uri>
+  </include>
+
+  <include>
+    <uri>model://ground_plane</uri>
+  </include>
+
+  <!-- 外围墙 -->
+
+  <!-- 北墙分为两段，中心在 x=8 处留出小缺口（入口） -->
+  <model name="wall_north_left">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>17.5 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>17.5 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-1.25 10 0.5 0 0 0</pose>
+  </model>
+
+  <model name="wall_north_right">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>1.5 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>1.5 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>9.25 10 0.5 0 0 0</pose>
+  </model>
+
+  <!-- 南墙在 x=-8 处留出缺口（入口） -->
+  <model name="wall_south_left">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>1.5 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>1.5 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-9.25 -10 0.5 0 0 0</pose>
+  </model>
+
+  <model name="wall_south_right">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>17.5 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>17.5 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>1.25 -10 0.5 0 0 0</pose>
+  </model>
+
+  <!-- 东墙分段，y=8 处留缺口（与北墙的缺口在同一对角） -->
+  <model name="wall_east_bottom">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 17.5 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 17.5 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>10 -1.25 0.5 0 0 0</pose>
+  </model>
+
+  <model name="wall_east_top">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 1.5 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 1.5 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>10 9.25 0.5 0 0 0</pose>
+  </model>
+
+  <!-- 西墙分段，y=-8 处留缺口（与南墙的缺口在同一对角） -->
+  <model name="wall_west_bottom">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 1.5 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 1.5 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-10 -9.25 0.5 0 0 0</pose>
+  </model>
+
+  <model name="wall_west_top">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 17.5 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 17.5 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-10 1.25 0.5 0 0 0</pose>
+  </model>
+
+
+  <!-- 内部迷宫墙 -->
+
+  <model name="maze_wall1">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-4 -5 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall2">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>2 -1 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall3">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>8 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>4 3 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall4">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 8 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-3 5 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall5">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>6 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>6 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-6 1 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall6">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 6 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 6 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>6 -4 0.5 0 0 0</pose>
+  </model>
+
+
+  <model name="maze_wall7">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>5 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>5 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>1 7 0.5 0 0 0</pose>
+  </model>
+
+  <!-- 新增内部墙以增加复杂度 -->
+  <model name="maze_wall8">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 6 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 6 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>0 4 0.5 0 0 0</pose>
+  </model>
+
+  <model name="maze_wall9">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>4 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>4 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-2 2 0.5 0 0 0</pose>
+  </model>
+
+  <model name="maze_wall10">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>0.3 5 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>0.3 5 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>3 -2 0.5 0 0 0</pose>
+  </model>
+
+  <model name="maze_wall11">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>3 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>3 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>-5 -3 0.5 0 0 0</pose>
+  </model>
+
+  <model name="maze_wall12">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry><box><size>2 0.3 1</size></box></geometry>
+      </collision>
+      <visual name="visual">
+        <geometry><box><size>2 0.3 1</size></box></geometry>
+      </visual>
+    </link>
+    <pose>6 6 0.5 0 0 0</pose>
+  </model>
+
+  <!-- 行走的人模型 (Actor with animation) -->
+  <actor name="walking_person">
+    <pose>0 0 0 0 0 0</pose>
+    <scale>1 1 1</scale>
+    <link name="link">
+      <inertial>
+        <mass>70.0</mass>
+        <inertia>
+          <ixx>5.0</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>5.0</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.0</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>1.7</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://walkingperson/meshes/walk.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <script>
+      <loop>true</loop>
+      <auto_start>true</auto_start>
+      <animation name="walking">
+        <filename>model://walkingperson/meshes/walk.dae</filename>
+        <scale>1.0</scale>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+    </script>
+  </actor>
+
+  <!-- Dynamic obstacles placeholders: created so controllers can update their ModelState -->
+  <model name="dynamic_obstacle_1">
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.25</radius>
+            <length>0.6</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.25</radius>
+            <length>0.6</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.8 0.2 0.2 1</ambient>
+          <diffuse>0.8 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <pose>-8 -6 0.4 0 0 0</pose>
+  </model>
+
+  <model name="dynamic_obstacle_2">
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.25</radius>
+            <length>0.6</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.25</radius>
+            <length>0.6</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.2 0.8 0.2 1</ambient>
+          <diffuse>0.2 0.8 0.2 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <pose>5 -8 0.4 0 0 0</pose>
+  </model>
+
+  <model name="dynamic_obstacle_3">
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.35</radius>
+            <length>0.6</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.35</radius>
+            <length>0.6</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.8 1</ambient>
+          <diffuse>0.2 0.2 0.8 1</diffuse>
+        </material>
+      </visual>
+    </link>
+    <pose>0 2 0.4 0 0 0</pose>
+  </model>
+
+  <!-- 新增指定的 person_walking actor（慢速，包含给定初始状态与动画、skin） -->
+  <actor name="person_walking">
+    <pose>-1.95404 -6.51874 -1e-06 -2e-06 1e-06 0.000303</pose>
+    <scale>1 1 1</scale>
+    <link name="link">
+      <pose>-1.95404 -6.51874 -1e-06 -2e-06 1e-06 0.000303</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0.961451 2.02745 -2.70374 -2.11476 1.05371 0.105404</acceleration>
+      <wrench>76.9161 162.196 -216.299 0 -0 0</wrench>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.2</radius>
+            <length>1.7</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://walking_person/meshes/walk.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <skin>
+      <filename>model://walking_person/meshes/walk.dae</filename>
+      <scale>1</scale>
+    </skin>
+    <script>
+      <loop>true</loop>
+      <auto_start>true</auto_start>
+      <animation name="walking">
+        <filename>model://walking_person/meshes/walk.dae</filename>
+        <scale>1</scale>
+        <interpolate_x>true</interpolate_x>
+      </animation>
+    </script>
+  </actor>
+
+</world>
+</sdf>
