@@ -1,0 +1,45 @@
+<launch>
+ 
+  <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="x_pos" default="8.0"/>
+  <arg name="y_pos" default="9.0"/>
+  <arg name="z_pos" default="0.0"/>
+
+  <!-- Set GAZEBO_MODEL_PATH to include custom models -->
+  <env name="GAZEBO_MODEL_PATH" value="$(find my_maze_world)/models:$(optenv GAZEBO_MODEL_PATH /opt/ros/noetic/share/gazebo_ros/launch/../launch/../launch/../launch/../models)" />
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+
+    <arg name="world_name" value="$(find my_maze_world)/worlds/maze22.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+ 
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_$(arg model) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+  
+  <!-- 启动动态障碍物移动节点 -->
+  <node name="dynamic_obstacles" pkg="my_maze_world" type="dynamic_obstacles.py" output="screen" respawn="false">
+    <!-- 可通过参数调整更新频率与轨迹周期 -->
+    <param name="rate" value="8.0"/>
+    <param name="period1" value="12.0"/>
+    <param name="period2" value="16.0"/>
+    <param name="period3" value="20.0"/>
+  </node>
+  
+  <!-- 启动行走的人的移动节点 (15Hz 更新频率，动态障碍) -->
+  <node name="walking_person" pkg="my_maze_world" type="walking_person.py" output="screen" respawn="false">
+    <param name="rate" value="8.0"/>
+  </node>
+  
+  <!-- 启动用户指定的 person_walking 动态障碍控制节点（慢速） -->
+  <node name="person_walking" pkg="my_maze_world" type="person_walking.py" output="screen" respawn="false">
+    <param name="rate" value="8.0"/>
+  </node>
+</launch>

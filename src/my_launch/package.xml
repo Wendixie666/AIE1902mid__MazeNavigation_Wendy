@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>my_launch</name>
+  <version>0.0.1</version>
+  <description>Launch files for TurtleBot3 maze simulation</description>
+  <maintainer email="wendy@robot.com">Wendy</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>turtlebot3_description</exec_depend>
+  <exec_depend>my_maze_world</exec_depend>
+</package>

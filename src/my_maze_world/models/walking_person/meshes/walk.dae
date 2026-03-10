@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <authoring_tool>Wendy</authoring_tool>
+    </contributor>
+    <created>2026-03-10T00:00:00</created>
+    <modified>2026-03-10T00:00:00</modified>
+    <unit meter="1.0" name="meter"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+
+  <library_geometries>
+    <geometry id="PersonGeometry">
+      <mesh>
+        <source id="PersonPositions">
+          <float_array id="PersonPositions-array" count="24">
+            -0.2 -0.2 0.0  0.2 -0.2 0.0  0.2 0.2 0.0  -0.2 0.2 0.0
+            -0.2 -0.2 1.7  0.2 -0.2 1.7  0.2 0.2 1.7  -0.2 0.2 1.7
+          </float_array>
+          <technique_common>
+            <accessor source="#PersonPositions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="PersonVertices">
+          <input semantic="POSITION" source="#PersonPositions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#PersonVertices" offset="0"/>
+          <p>0 1 2  0 2 3  4 6 5  4 7 6  0 4 5  0 5 1  1 5 6  1 6 2  2 6 7  2 7 3  3 7 4  3 4 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+
+  <library_visual_scenes>
+    <visual_scene id="Scene">
+      <node id="Armature" name="Armature">
+        <node id="Armature_Hips" name="Hips" sid="Hips">
+          <translate sid="location">0 0 0</translate>
+          <rotate sid="rotationZ">0 0 1 0</rotate>
+          <rotate sid="rotationY">0 1 0 0</rotate>
+          <rotate sid="rotationX">1 0 0 0</rotate>
+          <scale sid="scale">1 1 1</scale>
+          <node id="Armature_Chest" name="Chest" sid="Chest">
+            <translate sid="location">0 0 0.5</translate>
+            <rotate sid="rotationZ">0 0 1 0</rotate>
+            <rotate sid="rotationY">0 1 0 0</rotate>
+            <rotate sid="rotationX">1 0 0 0</rotate>
+          </node>
+          <node id="Armature_LeftLeg" name="LeftLeg" sid="LeftLeg">
+            <translate sid="location">-0.1 0 -0.2</translate>
+            <rotate sid="rotationZ">0 0 1 0</rotate>
+            <rotate sid="rotationY">0 1 0 0</rotate>
+            <rotate sid="rotationX">1 0 0 0</rotate>
+          </node>
+          <node id="Armature_RightLeg" name="RightLeg" sid="RightLeg">
+            <translate sid="location">0.1 0 -0.2</translate>
+            <rotate sid="rotationZ">0 0 1 0</rotate>
+            <rotate sid="rotationY">0 1 0 0</rotate>
+            <rotate sid="rotationX">1 0 0 0</rotate>
+          </node>
+        </node>
+        <instance_geometry url="#PersonGeometry"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+
+  <library_animations>
+    <animation id="ArmatureAction_LeftLeg_LeftLegAction">
+      <source id="ArmatureAction_LeftLeg_LeftLegAction_keyframe_times">
+        <float_array id="ArmatureAction_LeftLeg_LeftLegAction_keyframe_times_array" count="2">0 1</float_array>
+        <technique_common>
+          <accessor source="#ArmatureAction_LeftLeg_LeftLegAction_keyframe_times_array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="ArmatureAction_LeftLeg_LeftLegAction_values">
+        <float_array id="ArmatureAction_LeftLeg_LeftLegAction_values_array" count="8">0 0 0 -0.5 0 0 0 0.5</float_array>
+        <technique_common>
+          <accessor source="#ArmatureAction_LeftLeg_LeftLegAction_values_array" count="2" stride="4">
+            <param name="ANGLE" type="float"/>
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="ArmatureAction_LeftLeg_LeftLegAction_sampler">
+        <input semantic="INPUT" source="#ArmatureAction_LeftLeg_LeftLegAction_keyframe_times"/>
+        <input semantic="OUTPUT" source="#ArmatureAction_LeftLeg_LeftLegAction_values"/>
+      </sampler>
+      <channel source="#ArmatureAction_LeftLeg_LeftLegAction_sampler" target="Armature_LeftLeg/rotationX.ANGLE"/>
+    </animation>
+    <animation id="ArmatureAction_RightLeg_RightLegAction">
+      <source id="ArmatureAction_RightLeg_RightLegAction_keyframe_times">
+        <float_array id="ArmatureAction_RightLeg_RightLegAction_keyframe_times_array" count="2">0 1</float_array>
+        <technique_common>
+          <accessor source="#ArmatureAction_RightLeg_RightLegAction_keyframe_times_array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="ArmatureAction_RightLeg_RightLegAction_values">
+        <float_array id="ArmatureAction_RightLeg_RightLegAction_values_array" count="8">0 0 0 0.5 0 0 0 -0.5</float_array>
+        <technique_common>
+          <accessor source="#ArmatureAction_RightLeg_RightLegAction_values_array" count="2" stride="4">
+            <param name="ANGLE" type="float"/>
+            <param name="X" type="float"/>
+            <param name="Y" type="float"/>
+            <param name="Z" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="ArmatureAction_RightLeg_RightLegAction_sampler">
+        <input semantic="INPUT" source="#ArmatureAction_RightLeg_RightLegAction_keyframe_times"/>
+        <input semantic="OUTPUT" source="#ArmatureAction_RightLeg_RightLegAction_values"/>
+      </sampler>
+      <channel source="#ArmatureAction_RightLeg_RightLegAction_sampler" target="Armature_RightLeg/rotationX.ANGLE"/>
+    </animation>
+  </library_animations>
+
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
